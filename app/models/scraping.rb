@@ -19,6 +19,7 @@ class Scraping
       # 取得したリンクが相対パスなのでURL追加とメソッドの呼び出し
       links.each do |link|
           puts scraping_detail('http://www.gcdental.co.jp' + link)
+        end
     end
 
     def self.scraping_detail(links)
@@ -30,10 +31,10 @@ class Scraping
       current_page = agent.get(links)     # リンク取得ぺージの指定
 
       # データの取得
-      image_url = 'http://www.gcdental.co.jp' +current_page.at('dt img').get_attribute('src') if page.at('.dt img')
-      product_url = 'http://www.gcdental.co.jp' +current_page.at('h3 a').get_attribute('href') if page.at('h3 a')
-      product_name = current_page.at('h3 a').inner_text if page.at('h3 a')
-      info = current_page.at('dd h4').inner_text if page.at('dd h4')
+      image_url = 'http://www.gcdental.co.jp' +current_page.at('dt img').get_attribute('src') if current_page.at('dt img')
+      product_url = 'http://www.gcdental.co.jp' +current_page.at('h3 a').get_attribute('href') if current_page.at('h3 a')
+      product_name = current_page.at('h3 a').inner_text if current_page.at('h3 a')
+      info = current_page.at('dd h4').inner_text if current_page.at('dd h4')
 
       # テーブルにデータの保存
       product = Product.new(product_name: product_name, image_url: image_url, product_url: product_url, info: info)
