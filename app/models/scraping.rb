@@ -37,7 +37,7 @@ class Scraping
       info = current_page.at('dd h4').inner_text if current_page.at('dd h4')
 
       # テーブルにデータの保存
-      product = Product.new(product_name: product_name, image_url: image_url, product_url: product_url, info: info)
+      product = Product.where(product_name: product_name, image_url: image_url, product_url: product_url, info: info).first_or_initialize
       product.save
     end
 
