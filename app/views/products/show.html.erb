@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10 col-lg-10">
+      <ul class="list-inline">
+        <li><h1><%= @product.product_name %></h1></li>
+        <li><button type="button" class="btn btn-default btn-sm"><a href="<%=@product.product_url %>">製品HP</a></button></li>
+      </ul>
+      <p><%= @product.info %></p>
+      <image src="<%= @product.image_url %>"></image>
+    </div>
+  </div>
+</div>

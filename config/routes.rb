@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :reviews
   get 'products/index'
-
+  get 'products/:id' => 'products#show'
   get 'reviews/new'
 
   # The priority is based upon order of creation: first created -> highest priority.
