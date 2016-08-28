@@ -1,11 +1,19 @@
 
-<div>製品一覧</div>
-<div> <% @products.each do |product| %>
-  <p><%= product.product_name %></p>
-  <p><%= product.info %></p>
-  <a href="<%=product.product_url %>">製品HP</a><br/>
-  <image src="<%= product.image_url %>"></image>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <h1>製品一覧</h1>
+      <!-- テーブルからデータを取り出して表示 -->
+      <% @products.each do |product| %>
+        <div class="col-xs-6 col-lg-4 row-eq-height">
+        <ul class="list-inline">
+          <li><h3><%= product.product_name %></h3></li>
+          <li><button type="button" class="btn btn-default btn-sm"><a href="<%=product.product_url %>">製品HP</a></button></li>
+        </ul>
+        <p><%= product.info %></p>
+        <image src="<%= product.image_url %>"></image>
+        </div>
+      <% end %>
+  </div>
 </div>
 
 
