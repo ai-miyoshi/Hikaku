@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews
   get 'products/index'
 
   get 'reviews/new'
