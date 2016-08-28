@@ -1,2 +1,11 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+
+<div>製品一覧</div>
+<div> <% @products.each do |product| %>
+  <p><%= product.product_name %></p>
+  <p><%= product.info %></p>
+  <a href="<%=product.product_url %>">製品HP</a><br/>
+  <image src="<%= product.image_url %>"></image>
+  <% end %>
+</div>
+
+
