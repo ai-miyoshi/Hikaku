@@ -6,7 +6,7 @@
       <% @products.each do |product| %>
         <div class="col-xs-6 col-lg-4 row-eq-height">
         <ul class="list-inline">
-          <li><h3><%= product.product_name %></h3></li>
+        <li><h3><a href="/products/<%= product.id %>"><%= product.product_name %></a></h3></li>
           <li><button type="button" class="btn btn-default btn-sm"><a href="<%=product.product_url %>">製品HP</a></button></li>
         </ul>
         <p><%= product.info %></p>
@@ -15,5 +15,4 @@
       <% end %>
   </div>
 </div>
-
 
