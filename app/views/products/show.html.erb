@@ -3,10 +3,16 @@
     <div class="col-xs-10 col-lg-10">
       <ul class="list-inline">
         <li><h1><%= @product.product_name %></h1></li>
-        <li><button type="button" class="btn btn-default btn-sm"><a href="<%=@product.product_url %>">製品HP</a></button></li>
+        <li>満足度 ☆☆☆☆☆</li>
+        <li>レビュー◯◯件</li>
+        <li><a href="<%=@product.product_url %>">製品ホームページへ</a></li>
       </ul>
       <p><%= @product.info %></p>
       <image src="<%= @product.image_url %>"></image>
     </div>
+  </div>
+  <div class="low">
+    <button type="button" class="btn btn-default btn-sm"><a href="/products/<%= @product.id %>/reviews/new">レビューを書く</a></button>
+    <button type="button" class="btn btn-default btn-sm"><a href="/products/<%= @product.id %>/reviews/new">レビューを見る</a></button>
   </div>
 </div>
