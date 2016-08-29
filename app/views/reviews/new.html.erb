@@ -2,14 +2,19 @@
   <h3><%= @product.product_name %>のレビューを投稿</h3>
   <%= form_for [@product, @review] do |f| %>
     <div style="margin: 8px 0">
-      <%= f.label :nickname, style: { 'margin-right' => 8 } %>
+      <%= f.label :表示名, style: { 'margin-right' => 8 } %>
       <%= f.text_field :nickname, placeholder: 'nickname', value: '' %>
     </div>
     <div style="margin: 8px 0">
       <%= f.label :満足度, style: { 'margin-right' => 8 } %>
-      <%= f.number_field :rate, placeholder: '評価', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
+      <%= f.number_field :rate, placeholder: '評価', value: 1, max: 5, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
     </div>
     <div style="margin: 8px 0">
+      <%= f.label :製品使用年数, style: { 'margin-right' => 8 } %>
+      <%= f.number_field :use_period, placeholder: '使用年数', value: 1, max: 20, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
+    </div>
+    <div style="margin: 8px 0">
+      <%= f.label :レビュー, style: { 'margin-right' => 8 } %>
       <%= f.text_area :review, placeholder: 'レビューを書いてね！', style: 'width: 100%;height: 300px;' %>
     </div>
     <div class="row">
