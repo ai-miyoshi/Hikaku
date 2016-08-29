@@ -6754,11 +6754,5 @@ button.close {
     display: none !important;
   }
 }
-/*# sourceMappingURL=bootstrap.css.map */
 
-/*三吉追加分*/
-/*からむのトップの高さを揃える。あんまうまくいってない*/
-.row-eq-height {
-  display: flex;
-  flex-wrap: wrap;
-}
+
