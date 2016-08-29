@@ -1,0 +1,45 @@
+<div class="container">
+  <header>
+    <h2>製品の検索</h2>
+    <%= form_tag('/products/search', method: :get) do %>
+    <input class="search__query" name="keyword" placeholder="製品名で検索" type="text" value=""></input>
+    <button class="btn-search" title="検索" type="submit"><i class="icon-search">検索</i></button>
+    <% end %>
+  <form accept-charset="utf-8" action="/" class="js-search-submit" method="get">
+  </form>
+</div>
+</article>
+<article class="section">
+<div class="container">
+  <header class="header header--section">
+    <h2 class="text-middle">
+      <i class="icon-movie color-gray-light"></i>検索結果
+    </h2>
+  </header>
+  <ul class="listview js-lazy-load-images">
+    <% @products.each do |product| %>
+    <li>
+      <a class="listview__element--right-icon" href="/products/<%= product.id %>/reviews/new" title="<%= product.product_name %>">
+        <div class="position-right p1em">
+          <i class="icon-chevron-right color-sub"></i>
+        </div>
+        <div class="row no-space-bottom">
+          <div class="col2">
+            <div class="thumbnail thumbnail--movies">
+              <div class="thumbnail__figure" style="background-image: url(<%= product.product_url %>);" title="<%= product.product_name %>"></div>
+            </div>
+          </div>
+          <div class="col6 push6">
+            <h3 class="text-middle text-break">
+              <span class="color-sub"><%= product.product_name %></span>
+            </h3>
+            <p class="text-xsmall text-overflow">
+              <%= product.info %>
+            </p>
+          </div>
+        </div>
+      </a>
+    </li>
+    <% end %>
+  </ul>
+</div>

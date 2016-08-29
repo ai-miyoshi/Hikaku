@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = []
+    # プロダクト名にキーワード(検索ワード)が含まれるデータを20個まで抽出
+    @products = Product.where('product_name LIKE(?)', "%#{params[:keyword]}%").limit(20)
   end
 end
