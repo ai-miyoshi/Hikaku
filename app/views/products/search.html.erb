@@ -17,7 +17,7 @@
     <h2>検索結果</h2>
       <% @products.each do |product| %>
       <div class="col-xs-6 col-lg-4 row-eq-height">
-        <h4><%= product.product_name %></h4>
+        <h4><a href="/products/<%= product.id %>"><%= product.product_name %></a></h4>
         <image src="<%= product.image_url %>" class="product_image"></image>
       </div>
       <% end %>
