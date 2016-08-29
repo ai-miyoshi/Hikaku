@@ -1,4 +1,11 @@
+
+
+/*index.html.view*/
+.index_box {
+  height: 500px;
+}
+
 .product_image {
   width: auto;
-  height: 200px;
+  height: 100px;
 }
