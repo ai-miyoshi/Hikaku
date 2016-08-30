@@ -1,12 +1,58 @@
 <div class="container">
+<!-- フラッシュメッセージの表示 -->
+<!--   <% if flash[:notice] %>
+    <div class="alert alert-success">
+    <%= flash[:notice] %>
+    </div>
+  <% end %> -->
+<!-- フラッシュメッセージの表示 -->
   <div class="row">
     <div class="col-xs-10 col-lg-10">
       <ul class="list-inline">
         <li><h1><%= @product.product_name %></h1></li>
-        <li><button type="button" class="btn btn-default btn-sm"><a href="<%=@product.product_url %>">製品HP</a></button></li>
+         <li>メーカーロゴ</li>
+        <li>平均満足度
+          <% if @product.reviews.present? %>
+            <span class="rating-star">
+              <i class="star-actived rate-<%=@product.review_average %>0"></i>
+            </span>
+          <% else %>
+            <span class="rating-star">
+              <i class="star-actived rate-0"></i>
+            </span>
+          <% end %>
+        </li>
+        <li>レビュー数 <%= @product.reviews.length %>件</li>
+       <li><a href="<%=@product.product_url %>">製品ホームページへ</a></li>
       </ul>
-      <p><%= @product.info %></p>
-      <image src="<%= @product.image_url %>"></image>
     </div>
   </div>
+  <div class="row">
+      <p><%= @product.info %></p>
+      <image src="<%= @product.image_url %>">
+  </div>
+
+  <div class="low">
+    <button type="button" class="btn btn-default"><a href="/products/<%= @product.id %>/reviews/new">レビューを書く</a></button>
+  </div>
+
+<!-- レビューの表示 レビューない時はレビューありませんが出るようにしたい-->
+  <div class="row">
+    <h3>みんなのレビュー</h3>
+    <ul style="list-style:none;">
+    <% @product.reviews.each do |review| %>
+      <li style="border-bottom: dotted 1px">
+        <ul class="list-inline">
+          <li><p>投稿者：<%=review.nickname%>さん</p></li>
+          <li><p>満足度<span class="rating-star"><i class="star-actived rate-<%= review.rate %>0"></i></span></p></li>
+          <li><p>投稿日：<%= review.created_at%></p></li>
+          <li><p>製品使用年月：<%= review.use_period%>年</p></li>
+        </ul>
+        <ul><p><%= review.review %></p></ul>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+<!-- レビューの表示 -->
+
 </div>
