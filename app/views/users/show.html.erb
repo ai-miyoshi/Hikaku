@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <h3><%= current_user.nickname %>さんのマイページ</h3>
+  </div>
+
+  <div class="row">
+    <h3>これまでのレビュー</h3>
+    <ul style="list-style:none;">
+      <% current_user.reviews.each do |review| %>
+        <li><p>製品名<%= review.product.product_name%></p></li>
+          <ul class="list-inline">
+            <li><p>満足度<span class="rating-star"><i class="star-actived rate-<%= review.rate %>0"></i></span></p></li>
+            <li><p>この製品を<%= review.use_period%>年使用中</p></li>
+            <li><p>投稿日：<%= review.created_at.strftime('%Y年%m月%d日') %></p></li>
+          </ul>
+        <li><p><%= review.review %></p></li>
+        <li style="border-bottom: dotted 1px">
+        <% end %>
+    </ul>
+  </div>

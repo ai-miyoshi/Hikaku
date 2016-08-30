@@ -2,16 +2,23 @@
   <h3><%= @product.product_name %>のレビューを投稿</h3>
   <%= form_for [@product, @review] do |f| %><!-- ネストさせてるから@productと@review両方書く -->
 
-
-
     <div style="margin: 8px 0">
-      <%= f.label :満足度_10段階評価, style: { 'margin-right' => 8 } %>
+      <h4>ニックネーム：<%= current_user.nickname %></h4>
+    </div>
+<div class="form-inline">
+  <div class="form-group">
+    <div style="margin: 8px 0">
+      <%= f.label :満足度, style: { 'margin-right' => 8 } %>
       <%= f.number_field :rate, placeholder: '評価', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
     </div>
+  </div>
+  <div class="form-group">
     <div style="margin: 8px 0">
       <%= f.label :製品使用年数, style: { 'margin-right' => 8 } %>
       <%= f.number_field :use_period, placeholder: '使用年数', value: 1, max: 20, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
     </div>
+  </div>
+</div>
     <div style="margin: 8px 0">
       <%= f.label :レビュー, style: { 'margin-right' => 8 } %>
       <%= f.text_area :review, placeholder: '製品の使用感，性能，メンテナンス性，耐久性，デザイン，価格などについて記載してください。', style: 'width: 100%;height: 300px;' %>

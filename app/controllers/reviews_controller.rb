@@ -15,7 +15,7 @@ before_action :authenticate_user!, only: :new
 
 private
   def create_params
-    params.require(:review).permit(:rate, :use_period, :review).merge(product_id: params[:product_id], nickname: current_user.nickname)
+    params.require(:review).permit(:rate, :use_period, :review).merge(product_id: params[:product_id], user_id: current_user.id)
   end
 
 end
