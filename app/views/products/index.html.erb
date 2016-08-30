@@ -10,7 +10,8 @@
           <li><p class="text-small">
               <% if product.reviews.present? %>
                 <span class="rating-star">
-                  <i class="star-actived rate-<%= product.reviews.average(:rate).round %>0"></i>
+                  <!-- product.rbで定義した平均値を求めるメソッドreview_averageを呼び出し -->
+                  <i class="star-actived rate-<%= product.review_average %>0"></i>
                 </span>
               <% else %>
                 <span class="rating-star">
