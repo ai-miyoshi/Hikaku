@@ -51,3 +51,6 @@ end
 
   # スクレイピング用のジェム
   gem 'mechanize'
+
+  # ユーザー登録用のジェム
+  gem 'devise'
