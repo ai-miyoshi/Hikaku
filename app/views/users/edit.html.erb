@@ -1,4 +1,64 @@
-<div class="container">
-  <div class="row">
-    <h3><%= current_user.nickname %>さんのプロフィール情報の編集</h3>
+
+
+<!-- 
+  <div class="container">
+    <div class="row ">
+    <div class="col-xs-10 col-lg-6">
+    <h3>プロフィールの編集</h3>
+    <%= form_tag("/users/#{@user.id}", method: :patch ) do %>
+      <h3>編集する
+      </h3>
+      <textarea cols="30" name="name" placeholder="text" rows="10"><%= @user.name %></textarea>
+      <input type="submit" value="SENT">
+    <% end %>
   </div>
+  </div>
+  </div> -->
+
+
+<div class="container">
+  <div class="row ">
+    <div class="col-xs-10 col-lg-6">
+    <h3>プロフィールの編集</h3>
+      <%= form_tag("/users/#{@user.id}", method: :patch ) do %>
+        <div class="form-group">
+          <label for="name">氏名</label>
+          <input name="name" type="text" class="form-control" id="exampleInputEmail1" value="<%= @user.name %>" >
+        </div>
+        <div class="form-group">
+          <label for="nickname">ニックネーム</label>
+          <input name="nickname" type="text" class="form-control" id="exampleInputEmail1" value="<%= @user.nickname %>" >
+        </div>
+        <fieldset class="form-group">
+          <label for="exampleSelect1">性別</label>
+            <div class="radio">
+              <label><input type="radio" name="sex" id="optionsRadios1" value="<%= @user.sex %>" checked>男性</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="sex" id="optionsRadios2" value="<%= @user.sex %> >">女性</label>
+            </div>
+        </fieldset>
+        <div class="form-group">
+          <label for="birth_day">生年月日</label>
+          <input class="form-control" name="birth_day" type="date" value="<%= @user.birth_day %>" id="example-date-input">
+        </div>
+        <div class="form-group">
+          <label for="exampleSelect1">職業</label>
+          <select name="profession" class="form-control" id="exampleSelect1" value="<%= @user.profession %>">
+            <option><%= @user.profession %></option>
+            <option>開業医</option>
+            <option>勤務医</option>
+            <option>歯科技工士</option>
+           <option>歯科衛生士</option>
+           <option>歯科助手</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="office_name">歯科医院名</label>
+          <input name="office_name" type="text" class="form-control" id="exampleInputEmail1" value="<%= @user.office_name %>" >
+        </div>
+        <button type="submit" class="btn btn-primary" value="SENT">登録</button>
+      <% end%>
+    </div>
+  </div>
+</div>
