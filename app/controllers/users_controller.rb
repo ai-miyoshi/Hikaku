@@ -14,8 +14,6 @@ def update
     user.update(user_params)
   end
   redirect_to controller: :users, action: :show
-
-
 end
 
     private

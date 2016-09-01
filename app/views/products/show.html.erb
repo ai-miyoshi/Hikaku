@@ -1,10 +1,8 @@
 <div class="container">
-
   <div class="row">
     <div class="col-xs-10 col-lg-10">
       <ul class="list-inline">
         <li><h1><%= @product.product_name %></h1></li>
-         <li>メーカーロゴ</li>
         <li>平均満足度
           <% if @product.reviews.present? %>
             <span class="rating-star">
@@ -17,36 +15,51 @@
           <% end %>
         </li>
         <li>レビュー数 <%= @product.reviews.length %>件</li>
-       <li><a href="<%=@product.product_url %>">製品ホームページへ</a></li>
+        <li>メーカーロゴ</li>
+        <li>製品群</li>
+        <li><a href="<%=@product.product_url %>">製品ホームページ</a></li>
       </ul>
     </div>
-  </div>
-  <div class="row">
-      <p><%= @product.info %></p>
+
+    <div class="col-xs-10 col-lg-3 ">
       <image src="<%= @product.image_url %>">
+    </div>
+    <div class="col-xs-10 col-lg-5">
+      <p><%= @product.info %></p>
+      <button type="button" class="btn btn-default"><a href="/products/<%= @product.id %>/reviews/new">レビューを書く</a></button>
+    </div>
+
   </div>
 
-  <div class="low">
-    <button type="button" class="btn btn-default"><a href="/products/<%= @product.id %>/reviews/new">レビューを書く</a></button>
-  </div>
 
 <!-- レビューの表示 レビューない時はレビューありませんが出るようにしたい-->
-  <div class="row">
-    <h3>みんなのレビュー</h3>
-    <ul style="list-style:none;">
+    <div class="col-xs-10 col-lg-6">
+      <h3>この製品のレビュー</h3>
+      <p>平均満足度
+          <% if @product.reviews.present? %>
+            <span class="rating-star"><i class="star-actived rate-<%=@product.review_average %>0"></i></span>
+          <% else %>
+            <span class="rating-star"><i class="star-actived rate-0"></i></span>
+          <% end %>
+      </p>
     <% @product.reviews.each do |review| %>
-      <li style="border-bottom: dotted 1px">
-        <ul class="list-inline">
-          <li><p>投稿者：<%=review.user.nickname%>さん</p></li>
-          <li><p>満足度<span class="rating-star"><i class="star-actived rate-<%= review.rate %>0"></i></span></p></li>
-          <li><p>この製品を<%= review.use_period%>年使用中</p></li>
-          <li><p>投稿日：<%= review.created_at.strftime('%Y年%m月%d日') %></p></li>
-        </ul>
-        <ul><p><%= review.review %></p></ul>
-      </li>
-      <% end %>
-    </ul>
-  </div>
+        <div class="card">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><%=review.user.nickname%>さん  満足度:<span class="rating-star"><i class="star-actived rate-<%= review.rate %>0"></i></span><span class="pull-right">使用期間<%= review.use_period%>年</span></li>
+            <li class="list-group-item"><%= review.review %></li>
+            <li class="list-group-item text-right">
+              <span class="pull-left">
+                <% if user_signed_in? && review.user.id == current_user.id %>
+                  <%= link_to '編集', "/products/#{@product.id}/reviews/#{review.id}/edit", method: :get %>
+                  <%= link_to '削除', "/products/#{@product.id}/reviews/#{review.id}", method: :delete %>
+                <% end %>
+              </span>
+              <small>投稿日<%= review.created_at.strftime('%Y年%m月%d日')%></small>
+            </li>
+          </ul>
+        </div>
+      <% end%>
+    </div>
 <!-- レビューの表示 -->
 
 </div>

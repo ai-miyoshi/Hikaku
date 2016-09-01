@@ -1,6 +1,40 @@
-<h1>Editing Review</h1>
+<div class="container">
+  <div class="row ">
+    <div class="col-xs-10 col-lg-6">
+    <h3><%= @product.product_name %>のレビューを編集</h3>
 
-<%= render 'form' %>
+    <%= form_for [@product, @review] do |f| %>
 
-<%= link_to 'Show', @review %> |
-<%= link_to 'Back', reviews_path %>
+          <%= f.label :ニックネーム%>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <%= current_user.nickname %>
+              <small class="pull-right">
+              <%= link_to 'ニックネームの変更はこちら', "/users/#{current_user.id}/edit", method: :get %>
+            </small>
+            </div>
+          </div>
+
+        <div class="form-group">
+            <%= f.label :満足度%>
+            <%= f.number_field :rate, value: @review.rate, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;'} , :class=>"form-control"%>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :製品使用年数, style: { 'margin-right' => 8 } %>
+            <%= f.number_field :use_period, value: @review.use_period, max: 20, min: 1, html: { class: "search__query", style: 'text-align: right;' } , :class=>"form-control"%>
+        </div>
+
+      <div class="form-group">
+        <%= f.label :レビュー, style: { 'margin-right' => 8 } %>
+        <%= f.text_area :review, style: 'width: 100%;height: 200px;' , :class=>"form-control"%>
+      </div>
+      <%= button_tag type: "submit", class: "btn secondary" do %>
+        修正する
+        <% end %>
+    </div>
+
+    <% end %>
+    </div>
+  </div>
+</div>

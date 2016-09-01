@@ -2,14 +2,32 @@
   <div class="row ">
     <h3><%= current_user.nickname %>さんのマイページ</h3>
 
+  <!-- プロフィールの編集ページへ -->
+    <div class="col-xs-10 col-lg-10">
+      <% if current_user.id == @user.id %>
+        <button type = "button" class = "btn btn-secondary">
+          <%= link_to "プロフィールの編集", edit_user_path(@user) ,method: :get %>
+        </button>
+        <button type = "button" class = "btn btn-secondary">
+          <%= link_to "アカウント情報の編集" ,  '/users/edit'  %>
+        </button>
+      <% end %>
+    </div>
+
     <div class="col-xs-10 col-lg-6">
-      <h4>これまでのレビュー</h4>
+      <h4>書いたレビュー</h4>
       <% current_user.reviews.each do |review| %>
         <div class="card">
           <ul class="list-group list-group-flush">
           <li class="list-group-item"><%= review.product.product_name%>  満足度:<span class="rating-star"><i class="star-actived rate-<%= review.rate %>0"></i></span><span class="pull-right">使用期間<%= review.use_period%>年</span></li>
-            <li class="list-group-item"><%= review.review %></li>
-            <li class="list-group-item text-right">投稿日：<%= review.created_at.strftime('%Y年%m月%d日') %></li>
+          <li class="list-group-item"><%= review.review %></li>
+          <li class="list-group-item text-right">
+            <span class="pull-left">
+              <%= link_to '編集', "/products/#{review.product_id}/reviews/#{review.id}/edit", method: :get %>
+              <%= link_to '削除', "/products/#{review.product_id}/reviews/#{review.id}/edit", method: :delete %>
+            </span>
+            <small>投稿日<%= review.created_at.strftime('%Y年%m月%d日')%></small>
+          </li>
           </ul>
         </div>
       <% end%>
@@ -51,18 +69,5 @@
           </tbody>
       </table>
     </div>
-  <!-- プロフィールの編集ページへ -->
-    <div class="col-xs-10 col-lg-10">
-      <% if current_user.id == @user.id %>
-        <button type = "button" class = "btn btn-secondary">
-          <%= link_to "プロフィールの編集", edit_user_path(@user) ,method: :get %>
-        </button>
-        <button type = "button" class = "btn btn-secondary">
-          <%= link_to "アカウント情報の編集" ,  '/users/edit'  %>
-        </button>
-      <% end %>
-    </div>
-
-
   </div>
 </div>
