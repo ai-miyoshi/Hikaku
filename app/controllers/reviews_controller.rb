@@ -25,6 +25,13 @@ before_action :authenticate_user!, only: :new
     redirect_to user_path(current_user.id)
   end
 
+  def destroy
+    review = Review.find(params[:id])
+    if review.user_id == current_user.id
+      review.destroy
+    end
+  end
+
 private
   def create_params
     params.require(:review).permit(:rate, :use_period, :review).merge(product_id: params[:product_id], user_id: current_user.id)

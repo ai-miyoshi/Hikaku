@@ -24,7 +24,9 @@
           <li class="list-group-item text-right">
             <span class="pull-left">
               <%= link_to '編集', "/products/#{review.product_id}/reviews/#{review.id}/edit", method: :get %>
-              <%= link_to '削除', "/products/#{review.product_id}/reviews/#{review.id}/edit", method: :delete %>
+              <% if user_signed_in? && current_user.id == review.user_id%>
+                <%= link_to '削除', "/products/#{review.product_id}/reviews/#{review.id}", method: :delete %>
+              <% end %>
             </span>
             <small>投稿日<%= review.created_at.strftime('%Y年%m月%d日')%></small>
           </li>
