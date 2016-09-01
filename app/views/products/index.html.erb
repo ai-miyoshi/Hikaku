@@ -26,5 +26,22 @@
         </div>
       <% end %>
   </div>
+
+<div class="row">
+<h1>製品一覧</h1>
+  <% @products.each do |product| %>
+  <div class="col-sm-6 col-md-4 row-eq-height index_box">
+    <div class="thumbnail">
+      <img src="<%= product.image_url %>" alt="...">
+      <div class="caption">
+        <h3><a href="/products/<%= product.id %>"><%= product.product_name %></a></h3>
+        <p><%= product.info %></p>
+        <p><a href="<%=product.product_url %>" class="btn btn-primary" role="button">製品HP</a> <a href="#" class="btn btn-default" role="button">レビュー</a></p>
+      </div>
+    </div>
+  </div>
+  <% end %>
 </div>
 
+
+</div>

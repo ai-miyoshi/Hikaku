@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+  resources :users, only: [:show, :edit, :update]
   resources :products, only: :show do
     resources :reviews, only: [:new, :create]
     collection do
@@ -7,6 +10,7 @@ Rails.application.routes.draw do
   end
   root 'products#index'
 end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -62,4 +66,3 @@ end
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-

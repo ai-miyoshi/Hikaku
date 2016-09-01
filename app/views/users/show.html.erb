@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row ">
+    <h3><%= current_user.nickname %>さんのマイページ</h3>
+
+    <div class="col-xs-10 col-lg-6">
+      <h4>これまでのレビュー</h4>
+      <% current_user.reviews.each do |review| %>
+        <div class="card">
+          <ul class="list-group list-group-flush">
+          <li class="list-group-item"><%= review.product.product_name%>  満足度:<span class="rating-star"><i class="star-actived rate-<%= review.rate %>0"></i></span><span class="pull-right">使用期間<%= review.use_period%>年</span></li>
+            <li class="list-group-item"><%= review.review %></li>
+            <li class="list-group-item text-right">投稿日：<%= review.created_at.strftime('%Y年%m月%d日') %></li>
+          </ul>
+        </div>
+      <% end%>
+    </div>
+    <div class="col-xs-10 col-lg-6">
+      <h4>プロフィール</h4>
+      <table class = "table table-striped">
+         <thead>
+         </thead>
+         <tbody>
+            <% if current_user.id == @user.id %>
+              <tr>
+                 <td>氏名</td>
+                 <td><%=current_user.name %></td>
+              </tr>
+            <% end %>
+            <tr>
+               <td>ニックネーム</td>
+               <td><%=current_user.nickname %></td>
+            </tr>
+            <tr>
+               <td>性別</td>
+               <td><%=current_user.sex %></td>
+            </tr>
+            <tr>
+               <td>生年月日</td>
+               <td><%=current_user.birth_day %></td>
+            </tr>
+            <tr>
+               <td>職業</td>
+               <td><%=current_user.profession %></td>
+            </tr>
+            <% if current_user.id == @user.id %>
+              <tr>
+                 <td>勤務医院</td>
+                 <td><%=current_user.office_name %></td>
+              </tr>
+            <% end %>
+          </tbody>
+      </table>
+    </div>
+  <!-- プロフィールの編集ページへ -->
+    <div class="col-xs-10 col-lg-10">
+      <% if current_user.id == @user.id %>
+        <button type = "button" class = "btn btn-secondary">
+          <%= link_to "プロフィールの編集", edit_user_path(@user) ,method: :get %>
+        </button>
+        <button type = "button" class = "btn btn-secondary">
+          <%= link_to "アカウント情報の編集" ,  '/users/edit'  %>
+        </button>
+      <% end %>
+    </div>
+
+
+  </div>
+</div>
