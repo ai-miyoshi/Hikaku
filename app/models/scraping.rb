@@ -26,6 +26,8 @@ class Scraping
         product_name = box.at('.p_name').inner_text
         # 製品詳細ページ
         product_url = box.at('.thum a').get_attribute('href')
+        # 画像url
+        image_url = box.at('.thum img').get_attribute('src')
         # 説明文
         info = box.at('.right .txt').inner_text
         # 会社番号
@@ -37,7 +39,7 @@ class Scraping
       # puts corporation_id
 
       # テーブルにデータの保存
-      product = Product.where(product_name: product_name, product_url: product_url, info: info, corporation_id: corporation_id).first_or_initialize
+      product = Product.where(product_name: product_name, product_url: product_url, image_url: image_url ,info: info, corporation_id: corporation_id).first_or_initialize
       product.save
     end
 end
