@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.order('id Asc').limit(10)
+    @products = Product.order('id Asc')
+    # .limit(10)
   end
 
   def show
