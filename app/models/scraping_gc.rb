@@ -35,9 +35,10 @@ class Scraping
       product_url = 'http://www.gcdental.co.jp' +current_page.at('h3 a').get_attribute('href') if current_page.at('h3 a')
       product_name = current_page.at('h3 a').inner_text if current_page.at('h3 a')
       info = current_page.at('dd h4').inner_text if current_page.at('dd h4')
+      corporation_id == 1
 
       # テーブルにデータの保存
-      product = Product.where(product_name: product_name, image_url: image_url, product_url: product_url, info: info).first_or_initialize
+      product = Product.where(product_name: product_name, image_url: image_url, product_url: product_url, info: info, corporation_id: corporation_id).first_or_initialize
       product.save
     end
 
