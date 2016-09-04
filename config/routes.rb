@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  root 'products#index'
+  root 'corporations#index'
 end
 
 
