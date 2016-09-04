@@ -8,4 +8,5 @@ class CorporationsController < ApplicationController
   def index
     @corporations = Corporation.order('id Asc')
   end
+
 end

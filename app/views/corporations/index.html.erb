@@ -11,7 +11,7 @@
     <div class="col-sm-6 col-md-4">
       <div><h3>製品名で検索</h3></div>
       <div>
-      <%= form_tag('/products/search', method: :get) do %>
+      <%= form_tag('/puroducts/search', method: :get) do %>
         <div class="form-group">
           <input class="form-control" name="keyword" placeholder="製品名で検索" type="text" value="" ></input>
           <button class="btn btn-default" title="検索" type="submit">検索</button>
@@ -23,7 +23,7 @@
     <div class="col-sm-6 col-md-4">
       <h3>メーカーから検索</h3>
       <% @corporations.each do |corporation| %>
-      <div class="col-sm-10 col-md-8">
+      <div class="col-6">
           <div class="thumbnail text-center">
             <a href="/corporations/<%= corporation.id %>"><img src="<%= corporation.image_url %>" class="corporation_image" ></a>
           </div>
