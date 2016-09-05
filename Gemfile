@@ -54,3 +54,6 @@ end
 
   # ユーザー登録用のジェム
   gem 'devise'
+
+  #タグ用のジェム
+  gem 'acts-as-taggable-on', '~> 4.0'
