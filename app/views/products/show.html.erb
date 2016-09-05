@@ -1,23 +1,21 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-10 col-lg-10">
-      <ul class="list-inline">
+      <ul style="list-style:none;">
         <li><h1><%= @product.product_name %></h1></li>
-        <li>平均満足度
-          <% if @product.reviews.present? %>
-            <span class="rating-star">
-              <i class="star-actived rate-<%=@product.review_average %>0"></i>
-            </span>
-          <% else %>
-            <span class="rating-star">
-              <i class="star-actived rate-0"></i>
-            </span>
-          <% end %>
-        </li>
-        <li>レビュー数 <%= @product.reviews.length %>件</li>
-        <li>メーカーロゴ</li>
-        <li>製品群</li>
-        <li><a href="<%=@product.product_url %>">製品ホームページ</a></li>
+          <ul class="list-inline">
+            <li>平均満足度
+              <% if @product.reviews.present? %>
+                <span class="rating-star"><i class="star-actived rate-<%=@product.review_average %>0"></i></span>
+                <% else %>
+                <span class="rating-star"><i class="star-actived rate-0"></i></span>
+              <% end %>
+            </li>
+            <li>レビュー数 <%= @product.reviews.length %>件</li>
+            <li><%= @corporation.corporate_name %></li>
+            <li>製品群</li>
+            <li><a href="<%=@product.product_url %>">製品ホームページ</a></li>
+          </ul>
       </ul>
     </div>
 
@@ -26,7 +24,8 @@
     </div>
     <div class="col-xs-10 col-lg-5">
       <p><%= @product.info %></p>
-      <button type="button" class="btn btn-default"><a href="/products/<%= @product.id %>/reviews/new">レビューを書く</a></button>
+      <button type="button" class="btn btn-default">
+      <a href="/corporations/<%=@product.corporation_id%>/products/<%=@product.id%>/reviews/new">レビューを書く</a></button>
     </div>
 
   </div>
@@ -50,8 +49,8 @@
             <li class="list-group-item text-right">
               <span class="pull-left">
                 <% if user_signed_in? && review.user.id == current_user.id %>
-                  <%= link_to '編集', "/products/#{@product.id}/reviews/#{review.id}/edit", method: :get %>
-                  <%= link_to '削除', "/products/#{@product.id}/reviews/#{review.id}", method: :delete %>
+                  <%= link_to '編集', "/corporations/#{@product.corporation_id}/products/#{@product.id}/reviews/#{review.id}/edit", method: :get %>
+                  <%= link_to '削除', "/corporations/#{@product.corporation_id}/products/#{@product.id}/reviews/#{review.id}", data: { confirm: "本当にレビューを削除してよろしいですか?" },  method: :delete %>
                 <% end %>
               </span>
               <small>投稿日<%= review.created_at.strftime('%Y年%m月%d日')%></small>

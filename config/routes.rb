@@ -2,13 +2,19 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users, only: [:show, :edit, :update]
-  resources :products, only: :show do
-    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
-    collection do
-      get 'search'
+  resources :products, only: [] do
+      collection do
+        get 'search'
+      end
+    end
+
+  resources :corporations, only: :show do
+    resources :products, only: :show do
+      resources :reviews, only: [:new, :create, :edit, :update, :destroy]
+
     end
   end
-  root 'products#index'
+  root 'corporations#index'
 end
 
 
