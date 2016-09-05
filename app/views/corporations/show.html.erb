@@ -1,20 +1,29 @@
 <div class="container">
   <div class="row">
-    <div class=header>
-      <h1><%= @corporation.corporate_name %>製品一覧</h1>
+    <h1><%= @corporation.corporate_name %>製品一覧</h1>
+    <% @corporation.products.each do |product| %>
+    <div class="col-sm-6 col-md-4 row-eq-height index_box">
+      <div class="thumbnail">
+        <h4><a href="/corporations/<%= product.corporation_id %>/products/<%= product.id %>"><%= product.product_name %></a></h4>
+        <ul style="list-style:none;" class="list-inline">
+          <li><p><%= product.corporation.corporate_name %></p><li>
+          <li>平均満足度
+            <% if product.reviews.present? %>
+              <span class="rating-star"><i class="star-actived rate-<%=product.review_average %>0"></i></span>
+              <% else %>
+              <span class="rating-star"><i class="star-actived rate-0"></i></span>
+            <% end %>
+          </li>
+          <li>レビュー数 <%= product.reviews.length %>件</li>
+        </ul>
+        <img src="<%= product.image_url %>" class="product_image">
+        <div class="caption">
+          <p><%= product.info %></p>
+          <a href="<%=product.product_url %>">製品HP</a>
+          <a href="/corporations/<%= product.corporation_id %>/products/<%= product.id %>">レビュー</a>
+        </div>
+      </div>
     </div>
-      <% @corporation.products.each do |product| %>
-          <div class="col-sm-6 col-md-4 row-eq-height index_box">
-            <div class="thumbnail">
-              <img src="<%= product.image_url %>" class="product_image">
-              <div class="caption">
-                <h3><a href="/corporations/<%=@corporation.id %>/products/<%= product.id %>"><%= product.product_name %></a></h3>
-                <p><%= product.info %></p>
-                <p><a href="<%=product.product_url %>" class="btn secondary" role="button">製品HP</a>
-                <a href="/corporations/<%=@corporation.id %>/products/<%= product.id %>" class="btn btn-default" role="button secondary">レビュー</a></p>
-              </div>
-            </div>
-          </div>
-      <% end %>
+    <% end %>
   </div>
 </div>

@@ -1,17 +1,29 @@
 <div class="container">
-    <!-- 製品種類での検索 -->
-     <!-- 製品種類(チェア，その他機器など)のアイコンを設置  -->
-
-    <!-- メーカー別の検索 -->
-      <!-- メーカーのアイコンを表示して -->
-
-  <article class="section">
-    <h2>検索結果</h2>
-      <% @products.each do |product| %>
-      <div class="col-xs-6 col-lg-4 row-eq-height">
-        <h4><a href="/products/<%= product.id %>"><%= product.product_name %></a></h4>
-        <image src="<%= product.image_url %>" class="product_image"></image>
+  <div class="row">
+    <h1>検索結果</h1>
+    <% @products.each do |product| %>
+    <div class="col-sm-6 col-md-4 row-eq-height index_box">
+      <div class="thumbnail">
+        <h4><a href="/corporations/<%= product.corporation_id %>/products/<%= product.id %>"><%= product.product_name %></a></h4>
+        <ul style="list-style:none;" class="list-inline">
+          <li><p><%= product.corporation.corporate_name %></p><li>
+          <li>平均満足度
+            <% if product.reviews.present? %>
+              <span class="rating-star"><i class="star-actived rate-<%=product.review_average %>0"></i></span>
+              <% else %>
+              <span class="rating-star"><i class="star-actived rate-0"></i></span>
+            <% end %>
+          </li>
+          <li>レビュー数 <%= product.reviews.length %>件</li>
+        </ul>
+        <img src="<%= product.image_url %>" class="product_image">
+        <div class="caption">
+          <p><%= product.info %></p>
+          <a href="<%=product.product_url %>">製品HP</a>
+          <a href="/corporations/<%= product.corporation_id %>/products/<%= product.id %>">レビュー</a>
+        </div>
       </div>
-      <% end %>
-  </article>
+    </div>
+    <% end %>
+  </div>
 </div>
