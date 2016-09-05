@@ -1,19 +1,9 @@
 <div class="container">
-  <header>
-    <h2>製品の検索</h2>
-    <!-- 製品名での検索 -->
-    <%= form_tag('/products/search', method: :get) do %>
-    <div class="form-group navbar-form">
-      <input class="form-control" name="keyword" placeholder="製品名で検索" type="text" value=""></input>
-      <button class="btn btn-default" title="検索" type="submit"><i class="icon-search">検索</i></button>
-    </div>
-    <% end %>
     <!-- 製品種類での検索 -->
      <!-- 製品種類(チェア，その他機器など)のアイコンを設置  -->
 
     <!-- メーカー別の検索 -->
       <!-- メーカーのアイコンを表示して -->
-  </header>
 
   <article class="section">
     <h2>検索結果</h2>

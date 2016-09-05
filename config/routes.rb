@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users, only: [:show, :edit, :update]
-  resources :puroducts do
+  resources :products do
       collection do
         get 'search'
       end
