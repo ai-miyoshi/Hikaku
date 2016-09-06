@@ -12,7 +12,7 @@
               <% end %>
             </li>
             <li>レビュー数 <%= @product.reviews.length %>件</li>
-            <li><%= @corporation.corporate_name %></li>
+            <li><%= @product.corporation.corporate_name %></li>
             <li>製品群</li>
             <li><a href="<%=@product.product_url %>">製品ホームページ</a></li>
           </ul>
@@ -25,7 +25,9 @@
     <div class="col-xs-10 col-lg-5">
       <p><%= @product.info %></p>
       <button type="button" class="btn btn-default">
-      <a href="/corporations/<%=@product.corporation_id%>/products/<%=@product.id%>/reviews/new">レビューを書く</a></button>
+        <%= link_to 'レビューを書く', "/products/#{@product.id}/reviews/new", method: :get %>
+      </button>
+
     </div>
 
   </div>
@@ -49,8 +51,8 @@
             <li class="list-group-item text-right">
               <span class="pull-left">
                 <% if user_signed_in? && review.user.id == current_user.id %>
-                  <%= link_to '編集', "/corporations/#{@product.corporation_id}/products/#{@product.id}/reviews/#{review.id}/edit", method: :get %>
-                  <%= link_to '削除', "/corporations/#{@product.corporation_id}/products/#{@product.id}/reviews/#{review.id}", data: { confirm: "本当にレビューを削除してよろしいですか?" },  method: :delete %>
+                  <%= link_to '編集', "/products/#{@product.id}/reviews/#{review.id}/edit", method: :get %>
+                  <%= link_to '削除', "/products/#{@product.id}/reviews/#{review.id}", data: { confirm: "本当にレビューを削除してよろしいですか?" },  method: :delete %>
                 <% end %>
               </span>
               <small>投稿日<%= review.created_at.strftime('%Y年%m月%d日')%></small>
@@ -61,28 +63,3 @@
     </div>
 <!-- レビューの表示 -->
 </div>
-
-
-<%= form_for(@product) do |f| %>
-  <div class="field">
-    <%= f.label :name, "名前" %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :skill_list, "スキル・特技（カンマ区切り）" %><br>
-    <%= text_field_tag 'product[skill_list]', @product.skill_list.join(',') %>
-  </div>
-  <div class="field">
-    <%= f.label :interest_list, "興味・関心（カンマ区切り）" %><br>
-    <%= text_field_tag 'product[interest_list]', @product.interest_list.join(',') %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
-
-
-
-
-

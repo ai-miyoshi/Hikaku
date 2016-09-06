@@ -7,13 +7,11 @@ Rails.application.routes.draw do
         get 'search'
       end
     end
-
-  resources :corporations, only: :show do
-    resources :products, only: [:show, :edit] do
-      resources :reviews, only: [:new, :create, :edit, :update, :destroy]
-
-    end
+  resources :corporations, only: :show
+  resources :products, only: [:show, :edit] do
+    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
   end
+
   root 'corporations#index'
 end
 

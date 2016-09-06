@@ -5,7 +5,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @corporation = Corporation.find(params[:corporation_id])
     @product = Product.find(params[:id])
   end
 

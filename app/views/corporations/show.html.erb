@@ -4,7 +4,7 @@
     <% @corporation.products.each do |product| %>
     <div class="col-sm-6 col-md-4 row-eq-height index_box">
       <div class="thumbnail">
-        <h4><a href="/corporations/<%= product.corporation_id %>/products/<%= product.id %>"><%= product.product_name %></a></h4>
+        <h4><%= link_to "#{product.product_name}", "/products/#{product.id}", method: :get %><h4>
         <ul style="list-style:none;" class="list-inline">
           <li><p><%= product.corporation.corporate_name %></p><li>
           <li>平均満足度
@@ -20,7 +20,7 @@
         <div class="caption">
           <p><%= product.info %></p>
           <a href="<%=product.product_url %>">製品HP</a>
-          <a href="/corporations/<%= product.corporation_id %>/products/<%= product.id %>">レビュー</a>
+           <%= link_to 'レビュー', "/products/#{product.id}", method: :get %>
         </div>
       </div>
     </div>
