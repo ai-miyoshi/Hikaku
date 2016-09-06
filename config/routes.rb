@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
 
   resources :corporations, only: :show do
-    resources :products, only: :show do
+    resources :products, only: [:show, :edit] do
       resources :reviews, only: [:new, :create, :edit, :update, :destroy]
 
     end
