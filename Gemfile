@@ -54,3 +54,21 @@ end
 
   # ユーザー登録用のジェム
   gem 'devise'
+
+  #タグ用のジェム
+  gem 'acts-as-taggable-on', '~> 4.0'
+
+  #静的アセットファイルやログの保存先をHeroku用に微調整してくれるGem
+  gem 'rails_12factor'
+
+  # データベースでPostgreSQLを使用するためのジェム
+group :production do
+  gem 'pg'
+end
+
+
+
+
+
+
+

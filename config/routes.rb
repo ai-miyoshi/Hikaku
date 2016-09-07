@@ -1,18 +1,15 @@
 Rails.application.routes.draw do
-
   devise_for :users
+
   resources :users, only: [:show, :edit, :update]
   resources :products, only: [] do
       collection do
         get 'search'
       end
     end
-
-  resources :corporations, only: :show do
-    resources :products, only: :show do
-      resources :reviews, only: [:new, :create, :edit, :update, :destroy]
-
-    end
+  resources :corporations, only: :show
+  resources :products, only: [:show, :edit] do
+    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
   end
   root 'corporations#index'
 end

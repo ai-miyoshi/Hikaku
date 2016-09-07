@@ -23,9 +23,9 @@
           <li class="list-group-item"><%= review.review %></li>
           <li class="list-group-item text-right">
             <span class="pull-left">
-              <%= link_to '編集', "/corporations/#{review.product.corporation_id}/products/#{review.product_id}/reviews/#{review.id}/edit", method: :get %>
+              <%= link_to '編集', "/products/#{review.product_id}/reviews/#{review.id}/edit", method: :get %>
               <% if user_signed_in? && current_user.id == review.user_id%>
-                <%= link_to '削除', "/corporations/#{review.product.corporation_id}/products/#{review.product_id}/reviews/#{review.id}", data: { confirm: "本当にレビューを削除してよろしいですか?" } , method: :delete %>
+                <%= link_to '削除', "/products/#{review.product_id}/reviews/#{review.id}", data: { confirm: "本当にレビューを削除してよろしいですか?" } , method: :delete %>
               <% end %>
             </span>
             <small>投稿日<%= review.created_at.strftime('%Y年%m月%d日')%></small>

@@ -3,7 +3,6 @@ before_action :authenticate_user!, only: :new
 
   # GET /reviews/new
   def new
-    @corporation = Corporation.find(params[:corporation_id])
     @product = Product.find(params[:product_id])
     @review = Review.new
   end
@@ -14,7 +13,6 @@ before_action :authenticate_user!, only: :new
   end
 
   def edit
-    @corporation = Corporation.find(params[:corporation_id])
     @product = Product.find(params[:product_id])
     @review = Review.find(params[:id])
   end
