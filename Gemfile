@@ -62,7 +62,9 @@ end
   gem 'rails_12factor'
 
   # データベースでPostgreSQLを使用するためのジェム
+group :production do
   gem 'pg'
+end
 
 
 
