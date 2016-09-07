@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
   belongs_to :corporation
 
   # タグに関する記述
-   acts_as_ordered_taggable_on :skills, :interests
+   acts_as_taggable
 
   def review_average
     reviews.average(:rate).round
