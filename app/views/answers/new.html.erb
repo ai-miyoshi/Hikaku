@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row ">
+    <div class="col-xs-10 col-lg-6">
+    <h3>質問に回答する</h3>
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">質問者：<%=@question.user.nickname%>さん（<%=@question.user.profession%>）
+        <small>投稿日<%= @question.created_at.strftime('%Y年%m月%d日 %H:%M')%></small></li>
+        <li class="list-group-item"><big> Q </big><%= @question.text %></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">回答者：<%=current_user.nickname%>さん（<%=current_user.profession%>）</li>
+        <li class="list-group-item">
+          <%= form_for(@answer) do |f| %>
+            <div class="form-group">
+              <%= f.text_area :text, placeholder: "回答を入力してください", style: 'width: 100%;height: 200px;', autofocus:"true" %>
+            </div>
+            <%= f.hidden_field :question_id %>
+            <%= f.submit "回答する", class:"btn btn-default"%>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+
+    </div>
+  </div>
+</div>
