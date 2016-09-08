@@ -6,7 +6,7 @@
         <li class="list-group-item text-right">
           <span class="pull-left">
             <ul style="list-style:none;" class="list-inline">
-              <li>回答<%= question.answers.count %>件</li>
+              <%= link_to "回答#{question.answers.count}件", product_question_path(question.product, question) %>
               <li>
                 <%= form_tag(new_answer_path, method: :get) do %>
                   <%= hidden_field_tag(:question_id, question.id) %>

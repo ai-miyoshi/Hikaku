@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   resources :corporations, only: :show
   resources :products, only: [:show, :edit] do
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
-    resources :questions, only: [:new, :create]
+    resources :questions, only: [:new, :create, :show]
   end
-  resources :answers, only: [:new, :create]
+  resources :answers, only: [:new, :create, :edit, :update]
   root 'corporations#index'
 end
 

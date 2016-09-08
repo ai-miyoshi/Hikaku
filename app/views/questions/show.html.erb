@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row ">
+    <div class="col-xs-10 col-lg-6">
+    <h3><%=@question.product.product_name%>への質問と回答</h3>
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">質問者：<%=@question.user.nickname%>さん（<%=@question.user.profession%>）
+        <small>投稿日<%= @question.created_at.strftime('%Y年%m月%d日 %H:%M')%></small></li>
+        <li class="list-group-item"><big> Q </big><%= @question.text %></li>
+      </ul>
+    </div>
+
+    <div class="group_action panel panel-default">
+      <div class="panel-body">
+        <% unless @question.answers.exists?(user_id: current_user.id) %>
+          <%= link_to '質問に回答する', new_answer_path(question_id: @question.id) %>
+        <% else %>
+          <h4>※回答済み※</h4>
+        <% end %>
+      </div>
+    </div>
+    <% if @question.answers.present? %>
+      <%= render partial: "questions/answer", collection: @answers %>
+    <% end %>
+  </div>
+</div>
