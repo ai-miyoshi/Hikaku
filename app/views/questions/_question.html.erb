@@ -5,7 +5,15 @@
         <li class="list-group-item"><big> Q </big><%= question.text %></li>
         <li class="list-group-item text-right">
           <span class="pull-left">
-          <!-- 後で質問の編集を追加する -->
+            <ul style="list-style:none;" class="list-inline">
+              <li>回答<%= question.answers.count %>件</li>
+              <li>
+                <%= form_tag(new_answer_path, method: :get) do %>
+                  <%= hidden_field_tag(:question_id, question.id) %>
+                  <%= submit_tag("回答する", :class => "btn btn-default btn-xs") %>
+                <% end %>
+              </li>
+            </ul>
           </span>
           <small>投稿日<%= question.created_at.strftime('%Y年%m月%d日 %H:%M')%></small>
         </li>
