@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   #association
   has_many :reviews
   has_many :questions, ->{ order("created_at DESC") }
+  has_many :answers, ->{ order("created_at DESC") }
     # orderオプション は取得する順序を変更することのできるオプションで、他の全てのオプションの前に記述します。
     # 今回はgroupとuserに対し設定することで、questionが作られた順にレコードを取得してくれます。
 

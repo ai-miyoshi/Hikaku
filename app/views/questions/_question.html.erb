@@ -5,7 +5,15 @@
         <li class="list-group-item"><big> Q </big><%= question.text %></li>
         <li class="list-group-item text-right">
           <span class="pull-left">
-          <!-- 後で質問の編集を追加する -->
+            <ul style="list-style:none;" class="list-inline">
+              <li>回答<%= question.answers.count %>件</li>
+              <li>
+                <%= form_tag("/products/#{@product_id}/answers/new", method: :get, class: "question_submit") do %>
+                  <%= hidden_field_tag(:question_id, question.id) %>
+                  <%= link_to '回答する', "/answers/new", method: :get %>
+                <% end %>
+              </li>
+            </ul>
           </span>
           <small>投稿日<%= question.created_at.strftime('%Y年%m月%d日 %H:%M')%></small>
         </li>
@@ -14,6 +22,6 @@
 <% else %>
   <h4>この製品への質問はありません。<br>質問を投稿しませんか？</h4>
   <button type="button" class="btn btn-default">
-  <%= link_to '質問をする', "/products/#{@product.id}/questions/new", method: :get %>
+  <%= link_to '質問をする', "/questions/new", method: :get %>
   </button>
 <% end %>
