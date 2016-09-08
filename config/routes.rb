@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
     resources :questions, only: [:new, :create]
   end
+  resources :answers, only: [:new, :create]
   root 'corporations#index'
 end
 
