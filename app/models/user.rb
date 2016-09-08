@@ -4,7 +4,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  #association
   has_many :reviews
+  has_many :questions, ->{ order("created_at DESC") }
+    # orderオプション は取得する順序を変更することのできるオプションで、他の全てのオプションの前に記述します。
+    # 今回はgroupとuserに対し設定することで、questionが作られた順にレコードを取得してくれます。
 
   # 入力値があるかを検証。必須項目にしたいものを記載する
   validates :name, presence: true
